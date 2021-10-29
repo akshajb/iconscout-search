@@ -1,4 +1,39 @@
-# search-page
+# Task 1 and Task 2
+
+## Note:
+
+Tried to recreate as much as possible from the Iconscout search page. Below are the features as well as challenges faced during this mini project.
+
+### Features
+
+1. Search for Icons from the input in the Navbar.
+2. Sub header with result count and text.
+3. Sidebar filters for Price, Dimension and Styles.
+4. Sidebar animation.
+5. Collapse for each filter category using BootstrapVue.
+6. Filter badges near search results to remove them.
+7. Icon Results
+8. Icon tile hover state for like and download button.
+9. Loading animation.
+10. Proper Route queries for all the filters and results.
+11. "Icon Editor" link in the Navbar for Task 2.
+
+### Challenges
+
+1. Challenge: icon_grid attribute for Dimension filter unavailable in <code>/v3/search/</code> API.<br/> 
+   Solution: Went through the Live API at iconscout.com to see what was being used.
+   
+2. Challenge: <code>product_type="pack"</code> does not return pack results, instead gives back <code>item</code> results.<br/> 
+   Solution: Since a working solution cannot be implemented without the API results, the filter for packs is disabled.
+   
+3. Challenge: Task 2. <br/> 
+   Solution: 
+   
+   i. Convert palette colors to HSL.<br/> 
+   ii. Convert Icon colors to HSL.<br/> 
+  iii. Compare hue of each Icon color with each palette color to find the minimum distance/difference.<br/> 
+  iv. Use the palette color with the least difference in hue as the icon color until the number of icon colors are less than palette colors.<br/> 
+  v. Once the icon colors exceed the palette colors count, Apply the hue with the minimum distance while preserving the saturation and lightness from the icon colors to generate the new colors.<br/> 
 
 ## Build Setup
 
@@ -17,53 +52,5 @@ $ npm run start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
-
-## Special Directories
-
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
-
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
 
 
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
