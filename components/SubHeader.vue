@@ -2,7 +2,7 @@
   <div class="sub-header">
     <div class="sub-header-content px-sm-8 pb-sm-7 px-5 pb-5">
       <h1 class="heading">
-        {{ count }} {{ searchString }}
+        {{ commaSeparatedNumber }} {{ searchString }}
         {{ styleText }}
         Icons
       </h1>
@@ -34,6 +34,12 @@ export default {
     searchString: {
       type: String,
       default: () => '',
+    },
+  },
+
+  computed: {
+    commaSeparatedNumber() {
+      return this.count.toLocaleString()
     },
   },
 }
