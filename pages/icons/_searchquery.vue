@@ -47,9 +47,23 @@
             />
           </div>
         </div>
-        <div v-if="viewFilter === 'item'" class="results">
+        <div
+          v-if="viewFilter === 'item' && !$fetchState.pending"
+          class="results"
+        >
           <div v-for="icon in icons" :key="icon.slug">
             <IconTile :icon="icon" />
+          </div>
+        </div>
+        <div v-else-if="$fetchState.pending" class="results">
+          <div v-for="i in pageCount" :key="i">
+            <article class="icon-tile-loader card-loader card-loader--tabs">
+              <a href="#">
+                <div class="icon-image">
+                  <p class="title bg-white"></p>
+                </div>
+              </a>
+            </article>
           </div>
         </div>
       </div>
@@ -71,6 +85,7 @@ export default {
       iconCount: 0,
       filterCapsules: [],
       searchString: '',
+      pageCount: 60,
       filterStatus: false,
       subHParaText: `This home icon is in Glyph icon style. This icon is available on
         Iconscout web as well as accessible from Iconscout plugin for Sketch
@@ -209,5 +224,71 @@ export default {
   font-size: 2.15rem;
   letter-spacing: -0.015em;
   text-transform: capitalize;
+}
+
+.icon-tile-loader {
+  width: 132px;
+  height: 132px;
+  box-shadow: 0 0 0 1px #bec6f3 10px;
+  margin: 1rem;
+}
+.card-loader {
+  background-color: #fff;
+  padding: 8px;
+  position: relative;
+  border-radius: 2px;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+.card-loader:only-child {
+  margin-top: 0;
+}
+.card-loader:before {
+  content: '';
+  height: 110px;
+  display: block;
+  background-color: hsl(240, 73%, 97%);
+  box-shadow: -48px 78px 0 -48px #ededed, -51px 102px 0 -51px #ededed;
+  border-radius: 10px;
+}
+.card-loader:after {
+  content: '';
+  background-color: #333;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-name: loader-animate;
+  animation-timing-function: linear;
+  background: -webkit-linear-gradient(
+    left,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 30%,
+    rgba(255, 255, 255, 0) 81%
+  );
+  background: -o-linear-gradient(
+    left,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 30%,
+    rgba(255, 255, 255, 0) 81%
+  );
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 30%,
+    rgba(255, 255, 255, 0) 81%
+  );
+}
+
+@keyframes loader-animate {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(100%, 0, 0);
+  }
 }
 </style>
